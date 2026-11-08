@@ -19,7 +19,7 @@ Browse handpicked destinations, book a trip, and manage your own travel listings
 
 ---
 
-![Wanderlust banner](public/image/Banner.png)
+![Wanderlust homepage](public/image/homepage.png)
 
 ## ✨ Overview
 
@@ -128,6 +128,7 @@ Create a `.env` file in the project root:
 MONGODB_URI=mongodb://...
 BETTER_AUTH_URL=http://localhost:3000
 BETTER_AUTH_SECRET=your-random-secret
+NEXT_PUBLIC_API_URL=http://localhost:8000
 JWKS_ACCESS_KEY=shared-secret-with-backend
 ```
 
@@ -140,7 +141,9 @@ npm install
 node index.js
 ```
 
-The API starts at `https://wanderlust-backend-sage.vercel.app/` and must be running before using destination or booking features.
+The local API runs at `http://localhost:8000`. The deployed API is live at
+[https://wanderlust-backend-sage.vercel.app](https://wanderlust-backend-sage.vercel.app)
+and must be reachable before using destination or booking features.
 
 ### 4. Start the frontend
 
@@ -148,7 +151,8 @@ The API starts at `https://wanderlust-backend-sage.vercel.app/` and must be runn
 npm run dev
 ```
 
-Open [(https://wanderlust-frontend-ruddy.vercel.app/)] 🎉
+Open [http://localhost:3000](http://localhost:3000) locally, or try the
+[live demo](https://wanderlust-frontend-ruddy.vercel.app) 🎉
 
 ## 📜 Scripts
 
