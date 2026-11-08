@@ -128,7 +128,6 @@ Create a `.env` file in the project root:
 MONGODB_URI=mongodb://...
 BETTER_AUTH_URL=http://localhost:3000
 BETTER_AUTH_SECRET=your-random-secret
-NEXT_PUBLIC_API_URL=http://localhost:8000
 JWKS_ACCESS_KEY=shared-secret-with-backend
 ```
 
@@ -141,7 +140,7 @@ npm install
 node index.js
 ```
 
-The API starts at `http://localhost:8000` and must be running before using destination or booking features.
+The API starts at `https://wanderlust-backend-sage.vercel.app/` and must be running before using destination or booking features.
 
 ### 4. Start the frontend
 
@@ -149,7 +148,7 @@ The API starts at `http://localhost:8000` and must be running before using desti
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) 🎉
+Open [(https://wanderlust-frontend-ruddy.vercel.app/)] 🎉
 
 ## 📜 Scripts
 
