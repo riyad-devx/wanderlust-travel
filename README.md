@@ -1,10 +1,15 @@
+
 <div align="center">
 
 # 🌍 Wanderlust
 
-**Discover your next adventure — a full-stack travel booking experience.**
+### Discover Your Next Adventure
 
-Browse handpicked destinations, book a trip, and manage your own travel listings.
+**A Modern Full-Stack Travel Booking Platform**
+
+Explore beautiful destinations, book your dream trips, and manage your travel experiences with Wanderlust.
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Website-00C853?style=for-the-badge)](https://wanderlust-frontend-ruddy.vercel.app/)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
@@ -13,178 +18,336 @@ Browse handpicked destinations, book a trip, and manage your own travel listings
 [![Better Auth](https://img.shields.io/badge/Auth-Better_Auth-7C3AED)](https://better-auth.com)
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com)
 
-[Frontend](https://github.com/riyad-devx/wanderlust-travel) · [Backend](https://github.com/riyad-devx/wanderlust-backend)
+**Frontend:** [GitHub Repository](https://github.com/riyad-devx/wanderlust-travel)
+
+**Backend:** [GitHub Repository](https://github.com/riyad-devx/wanderlust-backend)
 
 </div>
 
 ---
 
-![Wanderlust homepage](public/image/homepage.png)
+## 📸 Project Preview
+
+![Wanderlust Homepage](public/image/homepage.png)
+
+---
 
 ## ✨ Overview
 
-Wanderlust is a modern travel booking platform built with the **Next.js App Router**. Users can explore curated destinations, book packages, track their bookings, and publish their own destinations. Authentication is handled by **Better Auth** with a short-lived JWT that the frontend forwards to a separate **Express + MongoDB** API.
+Wanderlust is a modern, full-stack travel booking platform built with the **Next.js App Router**.
 
-| | |
-|---|---|
-| **Frontend** | Next.js 16, React 19, TypeScript, Tailwind CSS v4 |
-| **Backend** | Express 5, MongoDB ([wanderlust-backend](https://github.com/riyad-devx/wanderlust-backend)) |
-| **Auth** | Better Auth + MongoDB adapter + JWT plugin |
-| **UI** | shadcn (base-nova / Base UI), Lucide icons |
+It allows users to explore beautiful travel destinations, discover travel packages, book trips, and manage their bookings. Users can also publish their own destinations and manage their listings.
+
+The application uses **Better Auth** for authentication and a separate **Express.js + MongoDB** backend for managing destinations and bookings. Secure communication between the frontend and backend is handled through JWT authentication.
 
 ## 🚀 Features
 
-- 🏝️ **Featured destinations carousel** — powered by the backend, five picks on the homepage.
-- 🔎 **Destination explorer** — browse all packages with price filtering and sorting.
-- 📄 **Destination details** — full overview, highlights, rating, and a booking panel.
-- ➕ **Add destination** — publish a new trip with images and details.
-- ✏️ **Edit & delete** — update or remove a destination you own.
-- 🧾 **My bookings** — view and cancel upcoming trips.
-- 🔐 **Authentication** — email/password sign up, login, persistent sessions, protected routes.
-- 📱 **Responsive design** — mobile-first layout with a collapsible navbar.
+- 🏝️ **Featured Destinations** — Explore handpicked travel destinations on the homepage.
+- 🔎 **Destination Explorer** — Browse all available destinations with filtering and sorting.
+- 📄 **Destination Details** — View complete destination information, highlights, ratings, and booking options.
+- ➕ **Add Destination** — Publish new travel destinations with images and details.
+- ✏️ **Edit Destination** — Update your own destination listings.
+- 🗑️ **Delete Destination** — Remove destinations you own.
+- 🧾 **My Bookings** — View and manage your booked trips.
+- ❌ **Cancel Booking** — Cancel your upcoming bookings.
+- 🔐 **Authentication** — Secure signup, login, and session management.
+- 🛡️ **Protected Routes** — Restrict private pages to authenticated users.
+- 🔑 **JWT Security** — Secure API requests using Better Auth JWT.
+- 📱 **Responsive Design** — Mobile-first interface for desktop, tablet, and mobile devices.
 
-## 🧭 Pages
+## 🛠️ Technology Stack
 
-| Route | Description |
-| --- | --- |
-| `/` | Homepage: banner, featured destinations, testimonials, CTA |
-| `/destinations` | All destinations with filters and sorting |
-| `/destinations/[id]` | Destination details, booking, edit and delete |
-| `/add-destination` | Create a new destination 🔒 |
-| `/my-bookings` | User bookings and cancellation 🔒 |
-| `/login` / `/signup` | Authentication |
+### Frontend
 
-🔒 = requires a signed-in session.
+| Technology | Purpose |
+|---|---|
+| Next.js 16 | React framework |
+| React 19 | UI development |
+| TypeScript | Type safety |
+| Tailwind CSS v4 | Styling |
+| shadcn/ui | UI components |
+| Lucide React | Icons |
+| Better Auth | Authentication |
 
-## 🔐 How auth works
+### Backend
 
-1. The user signs up or logs in through **Better Auth** (`/api/auth/[...all]`).
-2. The client requests a short-lived JWT from `/api/auth/token` (`authFetch` helper).
-3. Requests to the Express API include `Authorization: Bearer <token>`.
-4. The backend verifies the token against Better Auth's JWKS endpoint (`/api/auth/jwks`, protected by `JWKS_ACCESS_KEY`).
-5. `src/proxy.ts` (Next 16's middleware replacement) redirects guests away from protected routes.
+| Technology | Purpose |
+|---|---|
+| Node.js | JavaScript runtime |
+| Express.js 5 | REST API |
+| MongoDB | Database |
+| Better Auth JWT | API authentication |
+| JWKS | JWT verification |
 
-## 🔌 API reference
+## 🧭 Application Pages
 
-The frontend talks to the backend at `NEXT_PUBLIC_API_URL`.
+| Route | Description | Access |
+|---|---|---|
+| `/` | Homepage with banner, featured destinations, testimonials, and CTA | Public |
+| `/destinations` | Browse all destinations with filters and sorting | Public |
+| `/destinations/[id]` | Destination details, booking, edit, and delete | Public / Protected actions |
+| `/add-destination` | Add a new destination | Protected |
+| `/my-bookings` | View and manage bookings | Protected |
+| `/login` | User login | Public |
+| `/signup` | User registration | Public |
 
-| Method | Endpoint | Auth | Purpose |
-| --- | --- | :---: | --- |
-| `GET` | `/destination` | — | List all destinations |
-| `GET` | `/featured-destinations` | — | List the first 5 destinations |
-| `GET` | `/destination/:id` | ✅ | Get one destination |
-| `POST` | `/add-destination` | ✅ | Create a destination |
-| `PUT` / `PATCH` | `/destination/:id` | ✅ | Update a destination |
-| `DELETE` | `/destination/:id` | ✅ | Delete a destination |
-| `POST` | `/booking` | ✅ | Create a booking |
-| `GET` | `/my-booking?email=` | ✅ | List the user's bookings |
-| `DELETE` | `/booking/:id` | ✅ | Cancel a booking |
+## 🔐 Authentication & Security
 
-## 📁 Project structure
+Wanderlust uses **Better Auth** with MongoDB and the JWT plugin to provide secure authentication.
 
-```text
-src/
-├── app/
-│   ├── api/auth/[...all]/route.ts   # Better Auth handler
-│   ├── add-destination/             # Create destination page
-│   ├── destinations/                # List + [id] details
-│   ├── login/ · signup/             # Auth pages
-│   ├── my-bookings/                 # Bookings page
-│   ├── globals.css                  # Tailwind v4 tokens
-│   └── layout.tsx                   # Root layout (Navbar + Footer)
-├── components/
-│   ├── Home/                        # Banner, featured, testimonials, CTA
-│   ├── Destination/                 # Edit / delete dialogs
-│   ├── Booking/                     # Booking cards
-│   └── ui/                          # shadcn base-nova components
-├── lib/
-│   ├── auth.ts                      # Better Auth server config
-│   ├── auth-client.ts               # Better Auth React client
-│   └── auth-fetch.ts                # Authenticated fetch helper
-└── proxy.ts                         # Route protection (Next 16 proxy)
+### Authentication Workflow
+
+1. Users register or log in using Better Auth.
+2. Better Auth manages user sessions securely.
+3. The frontend requests a short-lived JWT from `/api/auth/token`.
+4. The `authFetch` helper attaches the JWT to backend API requests.
+5. The Express backend receives the token through the `Authorization` header.
+6. The backend verifies the JWT using Better Auth's JWKS endpoint.
+7. Protected API endpoints allow access only to authenticated users.
+8. Next.js `proxy.ts` protects private frontend routes.
+
+### Security Highlights
+
+- JWT-based API authentication.
+- JWKS-based token verification.
+- Protected frontend routes.
+- Bearer token authorization.
+- Environment-based secret management.
+- Secure session handling.
+
+## 🔌 Backend API Reference
+
+The frontend communicates with the Express backend using the `NEXT_PUBLIC_API_URL` environment variable.
+
+| Method | Endpoint | Authentication | Description |
+|---|---|---|---|
+| GET | `/destination` | Public | Get all destinations |
+| GET | `/featured-destinations` | Public | Get featured destinations |
+| GET | `/destination/:id` | Required | Get destination details |
+| POST | `/add-destination` | Required | Create a destination |
+| PUT / PATCH | `/destination/:id` | Required | Update a destination |
+| DELETE | `/destination/:id` | Required | Delete a destination |
+| POST | `/booking` | Required | Create a booking |
+| GET | `/my-booking?email=` | Required | Get user bookings |
+| DELETE | `/booking/:id` | Required | Cancel a booking |
+
+**Authorization Header:**
+
+```http
+Authorization: Bearer <JWT_TOKEN>
 ```
 
-## 🛠️ Getting started
+## 📁 Project Structure
+
+```text
+wanderlust-travel/
+│
+├── public/
+│   └── image/
+│
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...all]/
+│   │   │           └── route.ts
+│   │   │
+│   │   ├── add-destination/
+│   │   ├── destinations/
+│   │   ├── login/
+│   │   ├── signup/
+│   │   ├── my-bookings/
+│   │   ├── globals.css
+│   │   └── layout.tsx
+│   │
+│   ├── components/
+│   │   ├── Home/
+│   │   ├── Destination/
+│   │   ├── Booking/
+│   │   └── ui/
+│   │
+│   ├── lib/
+│   │   ├── auth.ts
+│   │   ├── auth-client.ts
+│   │   └── auth-fetch.ts
+│   │
+│   └── proxy.ts
+│
+├── .env
+├── package.json
+└── README.md
+```
+
+## ⚙️ Getting Started
+
+Follow these steps to run Wanderlust locally.
 
 ### Prerequisites
 
-- Node.js 20+
-- MongoDB database (Atlas or local)
-- The [backend server](https://github.com/riyad-devx/wanderlust-backend) running on `http://localhost:8000`
+Make sure you have installed:
 
-### 1. Clone & install
+- Node.js 20 or later
+- npm
+- MongoDB Atlas account or local MongoDB
+- Git
+
+### 1. Clone the Frontend Repository
 
 ```bash
 git clone https://github.com/riyad-devx/wanderlust-travel.git
+
 cd wanderlust-travel
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Configure environment
+### 3. Configure Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the root directory.
 
 ```env
 MONGODB_URI=mongodb://...
+
 BETTER_AUTH_URL=http://localhost:3000
 BETTER_AUTH_SECRET=your-random-secret
+
 NEXT_PUBLIC_API_URL=http://localhost:8000
+
 JWKS_ACCESS_KEY=shared-secret-with-backend
 ```
 
-### 3. Start the backend
+**Important:** Replace the placeholder values with your actual credentials. Use matching JWKS access secrets on the frontend and backend where required by your implementation. Never commit your `.env` file to GitHub.
+
+### 4. Clone the Backend Repository
+
+Open another terminal:
 
 ```bash
 git clone https://github.com/riyad-devx/wanderlust-backend.git
+
 cd wanderlust-backend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Configure the backend environment variables according to its implementation.
+
+### 5. Start the Backend Server
+
+```bash
 node index.js
 ```
 
-The local API runs at `http://localhost:8000`. The deployed API is live at
-[https://wanderlust-backend-sage.vercel.app](https://wanderlust-backend-sage.vercel.app)
-and must be reachable before using destination or booking features.
+The backend API will run at:
 
-### 4. Start the frontend
+```text
+http://localhost:8000
+```
+
+### 6. Start the Frontend Development Server
+
+Return to the frontend project directory:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) locally, or try the
-[live demo](https://wanderlust-frontend-ruddy.vercel.app) 🎉
+Open your browser:
 
-## 📜 Scripts
+```text
+http://localhost:3000
+```
+
+🎉 Your Wanderlust application is now running locally!
+
+## 📜 Available Scripts
 
 | Command | Description |
-| --- | --- |
-| `npm run dev` | Start the dev server (Turbopack) |
-| `npm run build` | Production build + type check |
-| `npm run start` | Run the production build |
-| `npm run lint` | ESLint |
-| `npx tsc --noEmit` | Type check only |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npx tsc --noEmit` | Check TypeScript errors |
 
 ## ☁️ Deployment
 
-The frontend deploys cleanly on **Vercel**:
+Wanderlust is deployed using **Vercel**.
 
-1. Import the repository in Vercel.
-2. Add all environment variables from the table above.
-3. Set `BETTER_AUTH_URL` to your deployed frontend URL.
-4. Set `NEXT_PUBLIC_API_URL` to your deployed backend URL (no trailing slash).
-5. Deploy 🚀
+### Frontend Deployment
 
-> **Tip:** Keep the backend's CORS configuration permissive enough to allow `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, and `OPTIONS` requests with the `Authorization` header.
+1. Push your frontend code to GitHub.
+2. Import the repository into Vercel.
+3. Configure all required environment variables.
+4. Set `BETTER_AUTH_URL` to your deployed frontend URL.
+5. Set `NEXT_PUBLIC_API_URL` to your deployed backend URL.
+6. Deploy your application.
 
-## 🔗 Related repositories
+### Backend Deployment
 
-- **Frontend** — [riyad-devx/wanderlust-travel](https://github.com/riyad-devx/wanderlust-travel)
-- **Backend** — [riyad-devx/wanderlust-backend](https://github.com/riyad-devx/wanderlust-backend)
+The Express backend is deployed separately.
+
+Make sure to configure:
+
+- MongoDB connection string.
+- JWKS access secret.
+- CORS configuration.
+- Required environment variables.
+
+### 🌐 Live Application
+
+<details>
+<summary><strong>View Deployment Links</strong></summary>
+
+**Frontend Application:**
+
+https://wanderlust-frontend-ruddy.vercel.app/
+
+**Backend API:**
+
+https://wanderlust-backend-sage.vercel.app/
+
+</details>
+
+## 🔗 Related Repositories
+
+| Repository | Link |
+|---|---|
+| Frontend | [wanderlust-travel](https://github.com/riyad-devx/wanderlust-travel) |
+| Backend | [wanderlust-backend](https://github.com/riyad-devx/wanderlust-backend) |
+
+## 👨‍💻 Author
+
+<div align="center">
+
+### Riyad Mia
+
+**Full Stack Developer (Aspiring)**
+
+Building modern web applications and exploring new technologies.
+
+[![GitHub](https://img.shields.io/badge/GitHub-riyad--devx-181717?style=for-the-badge&logo=github)](https://github.com/riyad-devx)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/md-riyad32/)
+
+</div>
 
 ---
 
 <div align="center">
 
-Made with ❤️ and a lot of ☕ · Happy travels! ✈️
+### 🌍 Explore. Discover. Travel.
+
+**Made with ❤️ and ☕ by Riyad Mia**
+
+⭐ If you like this project, consider giving it a star!
 
 </div>
